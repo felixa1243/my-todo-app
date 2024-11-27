@@ -1,15 +1,20 @@
-import { Text, View } from "react-native";
-
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import { LoginPage } from './screen/login-page';
 export default function Index() {
+  const [theme, setTheme] = useState(true);
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={theme ? eva.light : eva.dark}>
+        <StatusBar backgroundColor={"white"} style={'inverted'} />
+        <LoginPage />
+      </ApplicationProvider>
+    </>
   );
 }
+
+
